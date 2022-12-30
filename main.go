@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 type Entry struct {
@@ -24,6 +25,11 @@ type Auth struct {
 func main() {
 	fmt.Print("Hello world.......HHHH")
 	app := fiber.New()
+
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "http://localhost:3002",
+		AllowHeaders: "Origin, Content-Type, Accept",
+	}))
 
 	entries := []Entry{}
 
